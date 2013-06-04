@@ -63,8 +63,8 @@ if __name__ == "__main__":
     m = {"abc":10, "def":20, "abd":30}
     oamf = OrderAndMatchFinder(0, m, 10, 3, 5)
     oam = oamf.find()
-    print oam.piList
-    print oam.tauList
+    print "PILIST", oam.piList
+    print "TAULIST", oam.tauList
     #print oamf.getNeighbors("abc")
     
     #oamf.findMatch(k)
