@@ -26,7 +26,8 @@ class OrderAndMatchFinder:
         self.hasher = BloomierHasher(hashSeed, m, k, q)
         
     def findMatch(self, remainingKeysDict):
-        if len(remainingKeysDict) == 0: return True
+        if not remainingKeysDict: return True
+        #if len(remainingKeysDict) == 0: return True
         piTemp = []
         tauTemp = []
         
@@ -43,7 +44,8 @@ class OrderAndMatchFinder:
         removeAll(remainingKeysDict, piTemp)
         
         # len(X) != 0 is expensive, use if X: instead 
-        if len(remainingKeysDict) != 0:
+        if remainingKeysDict:
+        #if len(remainingKeysDict) != 0:
             if self.findMatch(remainingKeysDict) == False:
                 return False    
         
@@ -52,8 +54,6 @@ class OrderAndMatchFinder:
         return True
         
     def find(self):
-        findIt = False;
-        
         # keysDict will be modified so make a copy of it.
         remainKeys = deepcopy(self.keysDict)
         # print maxTry
@@ -64,6 +64,7 @@ class OrderAndMatchFinder:
             if self.findMatch(remainKeys):
                 # The seed value is retreived from the index
                 return OrderAndMatch(newHashSeed, self.piList, self.tauList)
+        return None
             
 if __name__ == "__main__":
     keyMap = {"abc":10, "def":20, "abd":30}
@@ -73,9 +74,10 @@ if __name__ == "__main__":
     q = 5
     oamf = OrderAndMatchFinder(0, keyMap, m, k, q)
     oam = oamf.find()
+    assert(oam is not None)
     print "PILIST", oam.piList
     print "TAULIST", oam.tauList
-    print oamf.getNeighbors("abc")
+    #print oamf.getNeighbors("abc")
     
     #oamf.findMatch(k)
     # h = BloomierHasher(0, 10, 3, 5)

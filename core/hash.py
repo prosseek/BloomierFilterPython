@@ -10,7 +10,7 @@ def getHash(key, hashseed, m, k):
     """
     salt = str(hashseed)
     hashed_password = hashlib.sha256(key + salt).hexdigest()
-    print hashed_password
+    #print hashed_password
     if k > 32: raise Exception("k should be less than 32")
     if k <= 1: raise Exception("k should be more than 2")
     if k > m: raise Exception("k should be less than m")
@@ -24,7 +24,7 @@ def getHash(key, hashseed, m, k):
     
     # make the non-overwrapping hash value below m
     while True:
-        print int(hashed_password[index:index+4], 16) 
+        #print int(hashed_password[index:index+4], 16) 
         value = int(hashed_password[index:index+4], 16) % m
         index += 4
         

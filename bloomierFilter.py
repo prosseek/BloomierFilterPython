@@ -26,7 +26,7 @@ class BloomierFilter:
         
     def xorOperations(self, value, M, neighbors):
         #value = [0] * self.byteSize
-        
+        #print "???", value
         byteArrayXor(value, M)
         
         for v in neighbors:
@@ -73,6 +73,7 @@ class BloomierFilter:
         #print pi, tau
         
         for i, pi in enumerate(piList):
+        #for pi in piList:
             key = pi
             value = map[key]
             #print value
@@ -103,6 +104,8 @@ class BloomierFilter:
 if __name__ == "__main__":
     k = {"abc":10, "def":20, "abd":30}
     bf = BloomierFilter(0, k, 10, 3, 32)
+    
+    #print "****\n\n\n"
     print bf.get("abd")
     print bf.get("abc")
     print bf.get("def")
