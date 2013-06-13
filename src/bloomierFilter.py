@@ -99,17 +99,8 @@ class BloomierFilter:
             self.valueTable[L] = value
         #print self.valueTable
             
-
-            
 if __name__ == "__main__":
-    k = {"abc":10, "def":20, "abd":30}
-    bf = BloomierFilter(0, k, 10, 3, 32)
+    sys.path.append("../test")
+    from testBloomierFilter import *
     
-    #print "****\n\n\n"
-    print bf.get("abd")
-    print bf.get("abc")
-    print bf.get("def")
-    print bf.get("xyz")
-    bf.set("def", 12)
-    print bf.get("def")
-    
+    unittest.main(verbosity=2)
