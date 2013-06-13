@@ -39,6 +39,32 @@ class TestCommonUtil(unittest.TestCase):
         res = self.test_int2byteArray()
         self.assertEqual(self.testinteger, byteArray2int(res))
         
+    def test_int2string(self):
+        res = int2string(self.testinteger)
+        self.assertEqual('\x00\x01\xe2\x40', res)
+        
+    def test_int2string2Byte(self):
+        res = int2string(10*256 + 10, 2)
+        self.assertEqual(res, '\x0a\x0a')
+        
+    def test_map2string(self):
+        map = {'abc':10, 'def':20, 'xyz':40}
+        res = map2string(map)
+        #sprint(res)
+        #print len(res)
+        self.assertEqual(33, len(res))
+        return res
+        
+    def test_string2int(self):
+        self.assertEqual(123456, string2int('\x00\x01\xe2\x40'))
+        
+    def test_string2map(self):
+        res = self.test_map2string()
+        m = string2map(res)
+        self.assertTrue(m['abc'] == 10)
+        self.assertTrue(m['def'] == 20)
+        self.assertTrue(m['xyz'] == 40)
+        
 if __name__ == "__main__":
     #pass
     unittest.main(verbosity=3)

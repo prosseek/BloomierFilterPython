@@ -32,11 +32,13 @@ def string2byteArray(string):
         result.append(ord(val))
     return result
     
-def byteArray2string(array):
+def byteArray2string(array, width=4):
     """
+    http://stackoverflow.com/questions/17077257/integer-array-to-string-in-python
     [1,2,3,4] => '\x01\x02\x03\x04'
     """
-    return ''.join([chr(x) for x in array])
+    result = ''.join([chr(x) for x in array])
+    return result[4-width:4]
     
 def int2byteArray(value):
     """
@@ -56,6 +58,43 @@ def byteArray2int(array):
     
     res = (array[0] << 24) + (array[1] << 16) + (array[2] << 8) + (array[3])
     return res
+    
+def int2string(value, width = 4):
+    return byteArray2string(int2byteArray(value), width)
+    
+def string2int(string):
+    return byteArray2int(string2byteArray(string))
+    
+def map2string(m):
+    """
+    key is string
+    value is integer
+    """
+    result = ""
+    for key, value in m.items():
+        length = int2string(len(key))
+        varray = int2string(value)
+        result += (length + key + varray)
+        
+    return result
+    
+def string2map(string):
+    m = {}
+    stringLength = len(string)
+    if stringLength == 0: return m
+    
+    i = 0
+    while (i < stringLength):
+        length = string2int(string[i:i+4])
+        key = string[i+4:i+4+length]
+        value = string2int(string[i+4+length:])
+        i += (4 + length + 4) # 4 is for length storage, length is string length and 4 is value length
+        # print length
+        # print key
+        # print value
+        m[key] = value
+    
+    return m
     
 if __name__ == "__main__":
     sys.path.append("../../test/testcore")
