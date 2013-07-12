@@ -11,6 +11,12 @@ class BloomierHasher:
         
         # hold the enough byte size for q
         self.byteSize = getByteSize(q) # self.q//8 + (1 if self.q % 8 != 0 else 0)
+        # smcho
+        #print "SEED > ", self.hashSeed
+        
+    def __str__(self):
+        result = "m(%d)k(%d)q(%d)seed(%d)" % (self.m,self.k,self.q,self.hashSeed)
+        return result
         
     def getNeighborhood(self, key):
         """
@@ -19,7 +25,10 @@ class BloomierHasher:
         #print hash(key)
         # http://stackoverflow.com/questions/9755538/how-do-i-create-a-list-of-unique-random-numbers
         
-        return getHash(key, self.hashSeed, self.m, self.k)
+        hashResult = getHash(key, self.hashSeed, self.m, self.k)
+        # smcho
+        #print key, "** hashResult > ", hashResult, "seed: ", self.hashSeed
+        return hashResult
         #return random.sample(range(self.m), self.k)
         
         #return (int(random()*self.m*10 % self.m), self.k)

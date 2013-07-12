@@ -75,6 +75,7 @@ class BloomierFilter:
             return False    
             
     def create(self, map, oam):
+        assert (oam is not None)
         piList = oam.piList
         tauList = oam.tauList
         #print pi, tau

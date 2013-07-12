@@ -3,8 +3,8 @@ import sys
 import zlib
 sys.path.append("../src")
 
-FILTER_TEST = False
-FILTER_SIZE_TEST = False
+FILTER_TEST = True
+FILTER_SIZE_TEST = True
 
 from bloomierFilter import *
 
@@ -14,7 +14,7 @@ class TestBloomierFilter(unittest.TestCase):
         
     def test_simple(self):
         k = {"abc":10, "def":20, "abd":30}
-        bf = BloomierFilter(0, k, 10, 3, 16)
+        bf = BloomierFilter(0, k, 10, 3, 8)
 
         #print "****\n\n\n"
         self.assertEqual(bf.get("abd"), k["abd"])
@@ -29,7 +29,7 @@ class TestBloomierFilter(unittest.TestCase):
         bf.set("def", k["def"])
         return bf
         
-    def test_givenTable(self):
+    def atest_givenTable(self):
         bfGiven = self.test_simple()
         table = bfGiven.getTable()
         valueTable = bfGiven.getValueTable()
@@ -54,7 +54,7 @@ class TestBloomierFilter(unittest.TestCase):
         # q : bit size 
         
         k = {}
-        for i in range(2000):
+        for i in range(1000):
             k[str(i)] = i
             
         m = int(len(k)*1.5) # len(k) * 1.1

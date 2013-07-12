@@ -32,6 +32,10 @@ class SingletonFindingTweaker:
         #print hashesSeen
         #print nonSingletons
         
+    def __str__(self):
+        result = "Nonsingletons > " + str(self.nonSingletons) + "\n"
+        return result
+        
     def tweak(self, key):
         """
         tweak returns the index of the neighbors that is singleton
