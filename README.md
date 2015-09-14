@@ -1,4 +1,4 @@
 bloomierFilterCpp
 =================
 
-Bloomier Filter Implementation in C++
+Bloomier Filter Implementation in Python
