@@ -3,4 +3,4 @@ BloomierFilter in Python
 
 Bloomier Filter Implementation in Python
 
-Documentation added for tools
+[read the docs](http://bloomierfilterpython.readthedocs.io/en/latest/)
